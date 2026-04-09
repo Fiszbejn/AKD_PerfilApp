@@ -1,8 +1,11 @@
 # AKD_PerfilApp
 
 ### Descrição
-O **AKD_PerfilApp** é um aplicativo desenvolvido em Kotlin com Jetpack Compose, como projeto para aprendizado e desenvolvimento de habilidades práticas.  
+O **PerfilApp** é um aplicativo desenvolvido em Kotlin com Jetpack Compose, como projeto para aprendizado e desenvolvimento de habilidades práticas.  
+
 O foco principal deste projeto foi o **desenvolvimento de formulários interativos** com manipulação e gerenciamento de estados para seus campos, utilizando os mais recentes recursos do **Jetpack Compose**.
+
+Desafio passado durante aula da máteria de Android Kotlin Developer.
 
 ---
 
@@ -33,15 +36,11 @@ Durante o desenvolvimento deste projeto, aprofundei conhecimentos práticos em:
 ---
 
 ### 📷 Pré-Visualização
-Adicione aqui as screenshots do emulador Android para demonstrar a interface:
 
-#### **Tela 1**
-![Screenshot Formulário 1](path/para/imagem1.png)
-
-#### **Tela 2**
-![Screenshot Formulário 2](path/para/imagem2.png)
-
-**Nota:** Substitua os caminhos acima pelas imagens desejadas.
+<p align="center">
+  <img src="screenshots/imagem_perfilapp1.png" width="250" />
+  <img src="screenshots/imagem_perfilapp2.png" width="250" />
+</p>
 
 ---
 
