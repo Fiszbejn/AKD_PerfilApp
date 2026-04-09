@@ -14,21 +14,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PerfilButton() {
+fun PerfilButton(
+    isEditable: Boolean,
+    onClickChangeEditable: (Boolean) -> Unit
+) {
 
     OutlinedButton(
-        onClick = {},
+        onClick = {onClickChangeEditable(!isEditable)},
         modifier = Modifier
             .fillMaxWidth(),
         border = BorderStroke(2.dp, color = ButtonDefaults.buttonColors().containerColor)
     ) {
-        Text("Salvar")
+        if(isEditable) Text("Salvar") else Text("Editar")
     }
 
-}
-
-@Preview
-@Composable
-private fun PerfilButtonPreview() {
-    PerfilButton()
 }

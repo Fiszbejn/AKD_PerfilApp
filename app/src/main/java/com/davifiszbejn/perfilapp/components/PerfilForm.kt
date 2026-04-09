@@ -26,110 +26,109 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PerfilForm(
     name: String,
-    isEditable: Boolean,
+    onChangeName: (String) -> Unit,
     isStudent: Boolean,
-    onChangeStudent:(Boolean) -> Unit,
+    onChangeStudent: (Boolean) -> Unit,
     flutter: Boolean,
+    onChangeFlutter: (Boolean) -> Unit,
     android: Boolean,
+    onChangeAndroid: (Boolean) -> Unit,
     ios: Boolean,
-    experienceLevel: Int,
-    onChangeExperienceLevel: () -> Unit,
+    onChangeIos: (Boolean) -> Unit,
+    experienceLevel: Float,
+    onChangeExperienceLevel: (Float) -> Unit,
     notificationAllowed: Boolean,
     onChangeNotificationAllowed: (Boolean) -> Unit
 ) {
 
-    if(isEditable) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+    ) {
+        Text("Nome:")
+        OutlinedTextField(
+            value = name,
+            enabled = true,
+            onValueChange = { onChangeName(it) },
+            modifier = Modifier.fillMaxWidth()
+
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text("Perfil:")
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text("Nome:")
-            OutlinedTextField(
-                value = name,
-                enabled = true,
-                onValueChange = {},
-                modifier = Modifier.fillMaxWidth()
-
+            RadioButton(
+                selected = isStudent,
+                onClick = { onChangeStudent(!isStudent) }
             )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text("Perfil:")
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                RadioButton(
-                    selected = isStudent,
-                    onClick = {onChangeStudent(!isStudent)}
-                )
-                Text("Aluno")
-                Spacer(modifier = Modifier.weight(1f))
-                RadioButton(
-                    selected = isStudent,
-                    onClick = {}
-                )
-                Text("Professor")
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text("Interesses:")
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = {}
-                    )
-                    Text("Flutter")
-                }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = {}
-                    )
-                    Text("Android")
-                }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = {}
-                    )
-                    Text("IOS")
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text("Nível de experiência: ${experienceLevel}")
-            Slider(
-                value = 4f,
-                onValueChange = {},
-                valueRange = 0.toFloat()..10.toFloat(),
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+            Text("Aluno")
+            Spacer(modifier = Modifier.weight(1f))
+            RadioButton(
+                selected = !isStudent,
+                onClick = { onChangeStudent(!isStudent) }
             )
+            Text("Professor")
+        }
 
-            Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Permitir notificação")
-                Spacer(modifier = Modifier.weight(1f))
-                Switch(
-                    checked = notificationAllowed,
-                    onCheckedChange = {onChangeNotificationAllowed(!notificationAllowed)},
+        Text("Interesses:")
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = flutter,
+                    onCheckedChange = { onChangeFlutter(it) }
                 )
+                Text("Flutter")
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = android,
+                    onCheckedChange = { onChangeAndroid(it) }
+                )
+                Text("Android")
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = ios,
+                    onCheckedChange = { onChangeIos(it) }
+                )
+                Text("IOS")
             }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text("Nível de experiência: ${experienceLevel.toInt()}")
+        Slider(
+            value = experienceLevel,
+            onValueChange = { onChangeExperienceLevel(it) },
+            valueRange = 0.toFloat()..10.toFloat(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Permitir notificação")
+            Spacer(modifier = Modifier.weight(1f))
+            Switch(
+                checked = notificationAllowed,
+                onCheckedChange = { onChangeNotificationAllowed(it) },
+            )
+        }
     }
-}
-
-
-@Preview
-@Composable
-private fun PerfilFormPreview() {
-    PerfilForm(name = "")
 }

@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PerfilAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    PerfilAppScreen(modifier = Modifier.padding(innerPadding))
+                    PerfilAppScreen(modifier = Modifier.fillMaxSize().padding(innerPadding))
                 }
             }
         }
